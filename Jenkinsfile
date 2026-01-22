@@ -10,12 +10,13 @@ pipeline{
 				echo "building"
 				sh 'java --version'
 				sh 'gradle --version'
+				sh 'gradle clean build'
 			}
 		 }
 	
 		stage("test"){
 			steps{
-				echo "testing now"
+				echo "gradle test"
 			}
 		 }
 		stage("lint"){
@@ -26,6 +27,7 @@ pipeline{
 		stage("Archive"){
 			steps{
 				echo "Archiving now"
+				 archiveArtifacts artifacts:"build/*", fingerprint:true
 			}
 		 }
 		stage("deploy"){
