@@ -27,7 +27,8 @@ pipeline{
 		stage("Archive"){
 			steps{
 				echo "Archiving now"
-				 archiveArtifacts artifacts:"build/*", fingerprint:true
+			  archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+         		   junit 'build/reports/**/*.xml'
 			}
 		 }
 		stage("deploy"){
