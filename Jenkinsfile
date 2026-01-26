@@ -17,6 +17,7 @@ pipeline{
 		stage("test"){
 			steps{
 				echo "gradle test"
+				sh 'gradle test'
 			}
 		 }
 		stage("lint"){
