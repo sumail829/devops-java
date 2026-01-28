@@ -16,8 +16,11 @@ jobs:
         with:
           java-version: 17
           distribution: temurin
-      - name: Build with Gradle
+      - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v5
+      - name: Build with gradle
+        run: ./gradlew build
+
 
 
 
