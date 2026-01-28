@@ -36,10 +36,10 @@ pipeline{
 				echo "De[loying now"
 			}
 		 }
-
+	}	
 		 post {
-        success {
-            emailext(
+        	success {
+        	    emailext(
                 subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
                 <h2>Build Successful 🎉</h2>
@@ -52,7 +52,7 @@ pipeline{
             )
         }
 	
-	}
+	
 	 failure {
             emailext(
                 subject: "❌ FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
@@ -66,5 +66,5 @@ pipeline{
                 mimeType: 'text/html'
             )
         }
-}
+    }
 }
