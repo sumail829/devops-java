@@ -39,6 +39,20 @@ jobs:
           run: |
             ls -al
             ls -al jar
+        - name: copy content
+          run: echo "${{secrets.SSH_KEY}}" > devops-tos.pem
+        - name: give permission
+          run: cat devops-tos.pem && chmod 400 devops-tos.pem
+        - name: login to ssh server
+          run: | 
+               ssh -o StrictHostKeyChecking=no -i devops-tos.pem ${{ vars.SSH_USER }}@${{ vars.SERVER_IP }} << 'ENDSSH'
+               if [ ! -d  /home/ubuntu/suman ]; then
+                   mkdir /home/ubuntu/suman
+               fi
+               ENDSSH
+        - name: copy jar folder to aws servver
+          run: scp -i devops-tos.pem -rv jar/* ${{ vars.SSH_USER }}@${{ vars.SERVER_IP }}:/home/ubuntu/suman 
+
 
 
 
