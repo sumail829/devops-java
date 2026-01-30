@@ -56,8 +56,10 @@ jobs:
           run: |
                ssh -o StrictHostKeyChecking=no -i devops-tos.pem ${{ vars.SSH_USER }}@${{ vars.SERVER_IP }} << 'ENDSSH'
                sudo fuser -k 8060/tcp || true
-               java -jar suman/calculator-1.0.0.jar &
+               nohup java -jar /var/www/html/suman/calculator-1.0.0.jar > app.log 2>&1 &
+               disown
                ENDSSH
+
 
 
 
