@@ -197,9 +197,6 @@ devops-java/
 
 1. Modify the pipeline to add a SonarQube analysis stage
 2. Add Docker containerization and push to registry
-3. Implement parallel test execution
-4. Add approval gates for production deployment
-5. Configure different deployment environments (dev, staging, prod)
 
 ## 📝 License
 
